@@ -25,7 +25,20 @@ Route::get('/about', function () {
 
 });
 
-Route::get('animals', function () {    $king = "lion";
+Route::get('/animals', function () {
+    $king = "lion";
     $hewan = ["monkey", "dragonfly", "tiger", "butterfly", "crocodile"];
     return view('animals_page', compact('king', 'hewan'));
+});
+
+Route::get('/halaman2', function () {
+    return view('animals');
+});
+
+Route::get('/about', function () {
+    $nama = "Fajar Dwi Saputro";
+    $jenis_kelamin = "Laki-laki";
+    $pendidikan_terakhir = "SMK";
+    $pekerjaan = "Pengusaha";
+    return view('biodata', compact('nama', 'jenis_kelamin', 'pendidikan_terakhir', 'pekerjaan'));
 });
