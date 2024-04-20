@@ -42,3 +42,8 @@ Route::get('/about', function () {
     $pekerjaan = "Pengusaha";
     return view('biodata', compact('nama', 'jenis_kelamin', 'pendidikan_terakhir', 'pekerjaan'));
 });
+
+Route::get('/sample/{nama}', function (Request $request, $nama) {
+    $nama2 = $nama;
+    return view('sample', compact('nama2'));
+});
