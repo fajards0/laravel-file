@@ -63,3 +63,7 @@ Route::get('album', function () {
     //return view('albummusik');
     return AlbumMusik::all();
 });
+
+Route::get('film', function () {
+    return view('film');
+});
