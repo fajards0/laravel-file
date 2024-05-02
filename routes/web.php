@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Sekolah;
+use App\Models\AlbumMusik;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,4 +48,18 @@ Route::get('/about', function () {
 Route::get('/sample/{nama}', function (Request $request, $nama) {
     $nama2 = $nama;
     return view('sample', compact('nama2'));
+});
+
+Route::get('siswa', function () {
+    //return Siswa::all();
+    return view('siswa');
+});
+
+Route::get('sekolah', function () {
+    return Sekolah::all();
+});
+
+Route::get('album', function () {
+    //return view('albummusik');
+    return AlbumMusik::all();
 });
