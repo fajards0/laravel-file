@@ -1,7 +1,8 @@
 <?php
 
-use App\Models\Sekolah;
 use App\Models\AlbumMusik;
+use App\Models\Film;
+use App\Models\Sekolah;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,4 +67,8 @@ Route::get('album', function () {
 
 Route::get('film', function () {
     return view('film');
+});
+
+Route::get('film/{id}', function (int $id) {
+    return view('detail-film', ['film' => Film::find($id)]);
 });
