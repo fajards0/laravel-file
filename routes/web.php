@@ -3,6 +3,8 @@
 use App\Models\AlbumMusik;
 use App\Models\Film;
 use App\Models\Sekolah;
+use App\Http\Controllers\MyController;
+use App\Http\Controllers\MovieController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,3 +74,13 @@ Route::get('film', function () {
 Route::get('film/{id}', function (int $id) {
     return view('detail-film', ['film' => Film::find($id)]);
 });
+
+// Route with controller
+
+Route::get('perkenalan', [MyController::class,'introduce']);
+
+Route::get('animal', [Mycontroller::class,'animals']);
+
+Route::get('movie', [Moviecontroller::class, 'getMovie']);
+Route::get('movie/{id}', [Moviecontroller::class, 'getMovieById']);
+

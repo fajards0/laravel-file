@@ -39,11 +39,16 @@
                 @foreach ($film->MediaFilm as $apalah)
                     <div class="col">
                         <div class="card shadow-sm">
-                            <h4>Title Media Film :{{ $apalah->media_title }}</h4>
+                            <div class="card-header" style="background-color: rgb(0, 0, 0)">
+                                <center>
+                                    <h5 style="color: rgb(255, 255, 255)">{{ $apalah->media_title }}</h5>
+                                </center>
+                            </div>
                             @if ($apalah->media_type)
-                                Url Media Film : <a href="{{ $apalah->url_media }}"> klik disini</a>
+                                <iframe height="240" src="{{ $apalah->url_media }}"></iframe>
+                                {{-- Url Media Film : <a href="{{ $apalah->url_media }}"> klik disini</a> --}}
                             @else
-                                <img src="{{ $apalah->url_media }}" alt="" height="300">
+                                <img src="{{ $apalah->url_media }}" alt="" height="240">
                             @endif
                             <hr>
                         </div>

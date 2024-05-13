@@ -46,7 +46,7 @@
     <hr>
 @endforeach --}}
 
-{{-- @foreach ($mediafilm as $data) 
+{{-- @foreach ($mediafilm as $data)
     <h2>Id Media Film :{{ $data->id }}</h2>
     <h2>Id Film :{{ $data->film_id }}</h2>
     <h2>Tipe Media Film :{{ $data->media_type }}</h2>
