@@ -10,6 +10,7 @@
                     <p>Nama : {{ $data['nama'] }}</p>
                     <p>Agama : {{ $data['agama'] }}</p>
                     <p>Alamat : {{ $data['alamat'] }}</p>
+                    <p>Jenis Kelamin : {{ $data['jk'] }}</p>
                     <p>hobi</p>
                     <ol>
                         @foreach ($data['hobi'] as $item)

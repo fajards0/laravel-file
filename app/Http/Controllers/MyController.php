@@ -10,7 +10,7 @@ class MyController extends Controller
             "nama" => "Fajar Dwi Saputro",
             "alamat" => "Sukamenak",
             "agama" => "Islam",
-            "jk" => "L",
+            "jk" => "Laki-laki",
             "hobi" => [
                 "Tidur", "Makan", "Minum",
             ],

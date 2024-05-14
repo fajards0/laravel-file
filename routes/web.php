@@ -5,6 +5,7 @@ use App\Models\Film;
 use App\Models\Sekolah;
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\ArtikelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -82,5 +83,11 @@ Route::get('perkenalan', [MyController::class,'introduce']);
 Route::get('animal', [Mycontroller::class,'animals']);
 
 Route::get('movie', [Moviecontroller::class, 'getMovie']);
+
 Route::get('movie/{id}', [Moviecontroller::class, 'getMovieById']);
 
+Route::get('artikel', [Artikelcontroller::class, 'getArtikel']);
+
+Route::get('artikel/id/{id}', [Artikelcontroller::class, 'getArtikelById']);
+
+Route::get('artikel/kategori/{kategori}', [Artikelcontroller::class, 'getArtikelByKategori']);

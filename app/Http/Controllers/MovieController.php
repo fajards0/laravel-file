@@ -16,7 +16,8 @@ class MovieController extends Controller
         //passing data movie ke view "movie.index"
         return view('movie.index', compact('movies'));
     }
-    public function getMovieById($id){
+    public function getMovieById($id)
+    {
         //menampilkan data movie berdasarkan id yang dipilih
         $movie = Movie::findOrFail($id);
         return view('movie.show', compact('movie'));

@@ -1,18 +1,20 @@
 @extends('layout.layout')
 @section('content')
     <div class="container">
-        <h3 align="center" class="py-4" style="font-family: cursive">Daftar Film Toy Story
+        <h3 align="center" class="py-4" style="font-family: cursive">Artikel
             <hr>
         </h3>
         <div class="row">
-            @foreach ($movies as $movie)
+            @foreach ($artikels as $dudu)
                 <div class="col">
                     <center>
                         <div class="card" style="width: 18rem;">
-                            <img src="{{ $movie->cover_url }}" class="card-img-top" alt="...">
+                            <img src="{{ $dudu->foto }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <p class="card-text">
-                                    <a href="movie/{{ $movie->id }}">{{ $movie->title }}</a>
+                                    <a href="artikel/id/{{ $dudu->id }}">{{ $dudu->judul }}</a>
+                                    <br>
+                                    <a href="artikel/kategori/{{ $dudu->kategori }}">kategori</a>
                                 </p>
                             </div>
                         </div>
