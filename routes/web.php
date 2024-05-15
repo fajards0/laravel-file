@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\MovieController;
+use App\Http\Controllers\MyController;
+use App\Http\Controllers\PenulisController;
 use App\Models\AlbumMusik;
 use App\Models\Film;
 use App\Models\Sekolah;
-use App\Http\Controllers\MyController;
-use App\Http\Controllers\MovieController;
-use App\Http\Controllers\ArtikelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -78,9 +79,9 @@ Route::get('film/{id}', function (int $id) {
 
 // Route with controller
 
-Route::get('perkenalan', [MyController::class,'introduce']);
+Route::get('perkenalan', [MyController::class, 'introduce']);
 
-Route::get('animal', [Mycontroller::class,'animals']);
+Route::get('animal', [Mycontroller::class, 'animals']);
 
 Route::get('movie', [Moviecontroller::class, 'getMovie']);
 
@@ -91,3 +92,9 @@ Route::get('artikel', [Artikelcontroller::class, 'getArtikel']);
 Route::get('artikel/id/{id}', [Artikelcontroller::class, 'getArtikelById']);
 
 Route::get('artikel/kategori/{kategori}', [Artikelcontroller::class, 'getArtikelByKategori']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('penulis', PenulisController::class);

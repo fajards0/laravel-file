@@ -6,6 +6,10 @@ use App\Models\Movie;
 
 class MovieController extends Controller
 {
+      public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //Melihat semua data
     public function getMovie()
     {

@@ -8,6 +8,10 @@ use App\Models\Artikel;
 
 class ArtikelController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //Melihat semua data
     public function getArtikel()
     {
