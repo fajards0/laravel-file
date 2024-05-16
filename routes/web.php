@@ -4,6 +4,8 @@ use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\PenulisController;
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\BukuController;
 use App\Models\AlbumMusik;
 use App\Models\Film;
 use App\Models\Sekolah;
@@ -98,3 +100,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('penulis', PenulisController::class);
+
+Route::resource('genre', GenreController::class);
+
+Route::resource('buku', BukuController::class);

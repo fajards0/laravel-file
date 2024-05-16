@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class PenulisController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     public function index()
     {
@@ -47,7 +51,7 @@ class PenulisController extends Controller
         return view('penulis.edit', compact('penulis'));
     }
 
-    public function update(UpdatePenulisRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $validated = $request->validate([
             'nama_penulis' => 'required|max:255',
@@ -55,8 +59,8 @@ class PenulisController extends Controller
         ]);
 
         $penulis = Penulis::findOrFail($id);
-        $penulis->nama_penulis = $require->nama_penulis;
-        $penulis->bio = $require->bio;
+        $penulis->nama_penulis = $request->nama_penulis;
+        $penulis->bio = $request->bio;
         $penulis->save();
 
         return redirect()->route('penulis.index')
