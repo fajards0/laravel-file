@@ -9,14 +9,12 @@ use Illuminate\Http\Request;
 
 class BukuController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        $buku = Buku::orderBy('id', 'desc')->get();
+        $buku = Buku::latest()->get();
         return view('buku.index', compact('buku'));
     }
 
@@ -35,8 +33,8 @@ class BukuController extends Controller
             'jml_halaman' => 'required|numeric',
             'cover' => 'required|max:4000|mimes:png,jpg',
             'deskripsi' => 'required',
-            'id_penulis' => 'required',
             'tgl_terbit' => 'required',
+            'id_penulis' => 'required',
         ]);
 
         $buku = new Buku();
@@ -45,8 +43,9 @@ class BukuController extends Controller
         $buku->jml_halaman = $request->jml_halaman;
         $buku->deskripsi = $request->deskripsi;
         $buku->id_penulis = $request->id_penulis;
+        $buku->tgl_terbit = $request->tgl_terbit;
 
-        //upload foto
+        // upload foto
         if ($request->hasFile('cover')) {
             $img = $request->file('cover');
             $name = rand(1000, 9999) . $img->getClientOriginalName();
@@ -55,7 +54,7 @@ class BukuController extends Controller
         }
 
         $buku->save();
-        //tampilkan banyak genre di buku
+        // lampirkan banyak genre di buku
         $buku->genre()->attach($request->genre);
         return redirect()->route('buku.index')
             ->with('success', 'data berhasil ditambahkan');
@@ -74,30 +73,31 @@ class BukuController extends Controller
         $penulis = Penulis::all();
         $selectGenre = $buku->genre->pluck('id')->toArray();
         return view('buku.edit', compact('buku', 'genre', 'penulis', 'selectGenre'));
+
     }
 
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'judul' => 'required|unique:bukus',
+            'judul' => 'required',
             'isbn' => 'required',
             'jml_halaman' => 'required|numeric',
-            // 'cover' => 'required|max:2048kbmimes:png.jpg',
+            // 'cover' => 'required|max:2048kb|mimes:png,jpg',
             'deskripsi' => 'required',
             'id_penulis' => 'required',
-            'tgl_terbit' => 'required',
         ]);
 
-        $buku = new Buku();
+        $buku = Buku::findOrFail($id);
         $buku->judul = $request->judul;
         $buku->isbn = $request->isbn;
         $buku->jml_halaman = $request->jml_halaman;
         $buku->deskripsi = $request->deskripsi;
         $buku->id_penulis = $request->id_penulis;
+        $buku->tgl_terbit = $request->tgl_terbit;
 
-        //upload foto
+        // upload foto
         if ($request->hasFile('cover')) {
-            $buku = deleteImage();// untuk menghapus gambar sebelum mengganti gambar baru
+            $buku->deleteImage(); // untuk hapus gambar sebelum diganti gambar baru
             $img = $request->file('cover');
             $name = rand(1000, 9999) . $img->getClientOriginalName();
             $img->move('images/buku/', $name);
@@ -105,10 +105,11 @@ class BukuController extends Controller
         }
 
         $buku->save();
-        //tampilkan banyak genre di buku
+        // mengganti banyak genre di buku
         $buku->genre()->sync($request->genre);
         return redirect()->route('buku.index')
             ->with('success', 'data berhasil diperbarui');
+
     }
 
     public function destroy($id)
@@ -117,7 +118,6 @@ class BukuController extends Controller
         $buku->deleteImage();
         $buku->delete();
         $buku->genre()->detach();
-
         return redirect()->route('buku.index')
             ->with('success', 'data berhasil dihapus');
     }

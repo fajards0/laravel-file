@@ -1,11 +1,12 @@
 <?php
 
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\BukuController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\PenulisController;
-use App\Http\Controllers\GenreController;
-use App\Http\Controllers\BukuController;
+use App\Http\Controllers\FrontController;
 use App\Models\AlbumMusik;
 use App\Models\Film;
 use App\Models\Sekolah;
@@ -21,10 +22,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
  */
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 // route basic
 Route::get('/about', function () {
@@ -99,8 +96,13 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('penulis', PenulisController::class);
+//route admin
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+    Route::resource('penulis', PenulisController::class);
+    Route::resource('genre', GenreController::class);
+    Route::resource('buku', BukuController::class);
+});
 
-Route::resource('genre', GenreController::class);
-
-Route::resource('buku', BukuController::class);
+// Route Guest(tamu / pengunjung)
+Route::get('/', [FrontController::class, 'buku']);
+Route::get('buku/{id}', [FrontController::class, 'detailbuku']);

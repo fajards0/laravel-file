@@ -5,8 +5,6 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Data Buku
-                        <a href="{{ route('buku.index') }}" class="btn btn-sm btn-primary" style="float: right">Kembali</a>
-                    </div>
                     <div class="card-body">
                         <div class="mb-2">
                             <label for="">Judul Buku:</label>
